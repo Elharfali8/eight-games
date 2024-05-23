@@ -10,7 +10,7 @@ const Navbar = ({isOpen, handleNavbar}) => {
       <div className="container mx-auto flex justify-between items-center h-full px-4 lg:px-2 xl:px-1">
         
         <div className=''>
-                  <Link className="h-full text-white flex items-center justify-center text-2xl md:text-3xl lg:text-4xl poppins-semibold">
+                  <Link to='/' className="h-full text-white flex items-center justify-center text-2xl md:text-3xl lg:text-4xl poppins-semibold" >
                   <span className="mr-2"><VscGame size={28} /></span> Logo 
           </Link>
         </div>
