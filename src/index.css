@@ -54,6 +54,24 @@
     color: #CCD0CF;
 }
 
+.gr-color {
+  color: #208c8c;
+}
+
+.btn {
+  background-color: rgba(32, 140, 140, 1);
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 8px;
+  font-size: 22px;
+  transition: background-color 200ms ease-in-out;
+}
+
+.btn:hover {
+  background-color: rgba(32, 140, 140, 0.4);
+}
 /* Fonts */
 .poppins-thin {
     font-family: "Poppins", sans-serif;
