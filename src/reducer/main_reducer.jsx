@@ -16,6 +16,12 @@ const main_reducer = (state, action) => {
         return {...state, popular_games: data}
     }
 
+    // fetch creators
+    if (action.type === 'FETCH_CREATORS') {
+        const { data } = action.payload
+        return {...state, creators: data}
+    }
+
     return {...state}
 }
 

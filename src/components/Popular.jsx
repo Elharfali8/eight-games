@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useMainContext } from '../context/main_context'
 import CardGame from './CardGame'
+import { Link } from 'react-router-dom'
 
 const Popular = () => {
     const [pageSize, setPageSize] = useState(6)
@@ -23,6 +24,11 @@ const Popular = () => {
               <CardGame key={id} {...item} />
             )
           })}
+      </div>
+      <div className='flex items-center justify-center mt-8 lg:mt-10 '>
+        <Link to={`/games/popular`} className='btn'>
+          Show more
+        </Link>
       </div>
     </section>
   )
