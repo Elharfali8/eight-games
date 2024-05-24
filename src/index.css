@@ -131,3 +131,29 @@
   background-color: #4A5C6A;
   color: white;
 }
+
+.section-title {
+  font-size: 26px;
+  font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.07em;
+    color: #9BABAB;
+
+    @media screen and (min-width: 640px) {
+      font-size: 30px;
+    }
+
+    @media screen and (min-width: 726px) {
+      font-size: 35px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 38px;
+    }
+
+}
+
+.section-title span {
+  color: #FF7582;
+}

@@ -1,12 +1,15 @@
 import React from 'react'
-import { Hero } from '../components'
+import { Hero, Popular } from '../components'
 
 const Home = () => {
   return (
-    <main className='min-h-[calc(100vh-80px)] main-bg-color'>
-      <div className='container mx-auto px-4 lg:px-2 xl:px-1'>
+    <main className='min-h-[calc(100vh-80px)]'>
+      <div className=' main-bg-color'>
         <Hero />
       </div>
+      <div className='blue-bg-color'>
+      <Popular />
+        </div>
     </main>
   )
 }

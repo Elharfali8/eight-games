@@ -6,7 +6,7 @@ import { FaTimes } from "react-icons/fa";
 
 const Navbar = ({isOpen, handleNavbar}) => {
   return (
-      <nav className='h-20 blue-bg-color light-color'>
+      <nav className='h-20 sticky top-0 right-0 blue-bg-color light-color z-10'>
       <div className="container mx-auto flex justify-between items-center h-full px-4 lg:px-2 xl:px-1">
         
         <div className=''>
