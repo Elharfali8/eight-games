@@ -1,6 +1,21 @@
 
 const main_reducer = (state, action) => {
 
+    // loading
+    if (action.type === 'IS_LOADING') {
+        return {...state, isLoading: true}
+    }
+
+    if (action.type === 'IS_LOADING_SUCCESS') {
+        return {...state, isLoading: false}
+    }
+
+    // fetch popular
+    if (action.type === 'FETCH_POPULAR_GAMES') {
+        const { data } = action.payload
+        return {...state, popular_games: data}
+    }
+
     return {...state}
 }
 
