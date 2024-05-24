@@ -1,0 +1,32 @@
+import React, { useEffect } from 'react'
+import { useMainContext } from '../context/main_context'
+import CreatorsCard from './CreatorsCard';
+
+const Creators = () => {
+    const { fetchCreators, creators } = useMainContext()
+
+    console.log(creators);
+    
+
+    useEffect(() => {
+        fetchCreators()
+    }, [])
+
+  return (
+      <section className='container mx-auto px-4 lg:px-2 xl:px-1 py-10 lg:py-16 text-white'>
+          <div className='flex items-center justify-center lg mb-8 lg:mb-10'>
+                <h1 className='section-title '>Our <span>Creators</span></h1>
+          </div>
+          <div className='grid gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+              {creators?.map((person) => {
+                  const {id} = person
+                  return (
+                      <CreatorsCard key={id} {...person} />
+                  )
+              })}
+          </div>
+    </section>
+  )
+}
+
+export default Creators
