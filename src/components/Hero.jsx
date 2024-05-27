@@ -16,7 +16,7 @@ const Hero = () => {
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea doloremque similique consequuntur impedit, est sed saepe repudiandae tenetur laudantium. Accusantium, blanditiis. Adipisci consequuntur earum aperiam delectus error architecto obcaecati repellendus.
               </p>
               <div className='mt-8 lg:mt-10'>
-              <Link to='/games' className='btn '>
+              <Link to='/games' className='main-btn '>
                 Explore
               </Link>
               </div>

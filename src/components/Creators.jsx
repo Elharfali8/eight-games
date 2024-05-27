@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { useMainContext } from '../context/main_context'
 import CreatorsCard from './CreatorsCard';
+import { Link } from 'react-router-dom';
 
 const Creators = () => {
     const { fetchCreators, creators } = useMainContext()
 
-    console.log(creators);
+    
     
 
     useEffect(() => {
-        fetchCreators()
+        fetchCreators(8)
     }, [])
 
   return (
@@ -24,6 +25,11 @@ const Creators = () => {
                       <CreatorsCard key={id} {...person} />
                   )
               })}
+          </div>
+          <div className='mt-8 lg:mt-10 flex items-center justify-center'>
+              <Link to={`/creators`} className='main-btn capitalize'>
+                see more creators
+              </Link>
           </div>
     </section>
   )

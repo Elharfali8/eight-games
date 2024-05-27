@@ -22,6 +22,17 @@ const main_reducer = (state, action) => {
         return {...state, creators: data}
     }
 
+    // fetch games and pages
+    if (action.type === 'FETCH_PAGES') {
+        const { pages } = action.payload
+        return {...state, total_pages: Math.ceil(pages / 20)}
+    }
+
+    if (action.type === 'FETCH_GAMES') {
+        const { data } = action.payload
+        return {...state, games: data}
+    }
+
     return {...state}
 }
 

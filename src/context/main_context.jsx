@@ -8,7 +8,9 @@ const MainContext = createContext()
 const initialState = {
     isLoading: false,
     popular_games: [],
-    creators: []
+    creators: [],
+    games: [], 
+    total_pages: 0
 }
 
 
@@ -29,12 +31,13 @@ export const MainContextProvider = ({ children }) => {
         }
     }
 
-    const fetchCreators = async () => {
+    const fetchCreators = async (num) => {
         dispatch({type: 'IS_LOADING'})
         try {
             const response = await axios('https://api.rawg.io/api/creators', {
                 params: {
-                    key: apiKey
+                    key: apiKey,
+                    page_size: num
                 }
             })
             const data = response.data.results
@@ -45,9 +48,31 @@ export const MainContextProvider = ({ children }) => {
             console.log(error);
         }
     }
+
+    // fetch games
+    const fetchGames = async (page) => {
+        dispatch({type: 'IS_LOADING'})
+        try {
+            const response = await axios('https://api.rawg.io/api/games', {
+                params: {
+                    key: apiKey,
+                    page,
+                    page_size: 20
+                }
+            })
+            dispatch({type: 'IS_LOADING_SUCCESS'})
+            const data = response.data.results
+            const pages = response.data.count
+            dispatch({ type: 'FETCH_GAMES', payload: { data } })
+            dispatch({type: 'FETCH_PAGES', payload: {pages}})
+        } catch (error) {
+            dispatch({type: 'IS_LOADING_SUCCESS'})
+            console.log(error);
+        }
+    }
     
     return (
-        <MainContext.Provider value={{...state, fetchPopularGames, fetchCreators}}>
+        <MainContext.Provider value={{...state, fetchPopularGames, fetchCreators, fetchGames}}>
             {children}
         </MainContext.Provider>
     )
