@@ -26,7 +26,7 @@ const Popular = () => {
           })}
       </div>
       <div className='flex items-center justify-center mt-8 lg:mt-10 '>
-        <Link to={`/games/popular`} className='btn'>
+        <Link to={`/games/popular`} className='main-btn'>
           Show more
         </Link>
       </div>
