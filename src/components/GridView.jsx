@@ -10,7 +10,7 @@ const GridView = ({games}) => {
               const { id, name, background_image, released, saturated_color } = game
               
               return (
-                  <Link key={id} to={`/games/${name}/${id}`} className={`h-full flex flex-col text-black bg-[#2a3d66] rounded-lg overflow-hidden transition-all ease-in-out duration-150 hover:scale-105`}>
+                  <Link key={id} to={`/games/${id}`} className={`h-full flex flex-col text-black bg-[#2a3d66] rounded-lg overflow-hidden transition-all ease-in-out duration-150 hover:scale-105`}>
                       <img src={background_image} alt={name} className='h-full object-cover pb-2' />
                       <div className='px-2 pb-2 flex flex-col'>
                           <h3 className='text-white text-lg poppins-medium tracking-widest'>{name}</h3>
