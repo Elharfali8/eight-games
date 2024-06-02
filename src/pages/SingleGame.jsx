@@ -5,6 +5,7 @@ import { FaClock, FaTags, FaTrophy, FaStar, FaPlay, FaStore } from "react-icons/
 import { RiComputerFill } from "react-icons/ri";
 import { IoSettings } from "react-icons/io5";
 import { TbWorldCode } from "react-icons/tb";
+import { MdBrowserUpdated } from "react-icons/md";
 import { PageTitle } from "../components";
 
 
@@ -20,8 +21,7 @@ const SingleGame = () => {
       setDesc(description_raw)
     }, [id, game?.description_raw])
 
-  const { name, released, background_image, website, rating, playtime, achievements_count, platforms, stores, developers, genres, description_raw, publishers } = game
-
+  const { name, released, background_image, website, rating, playtime, achievements_count, platforms, stores, developers, genres, description_raw, publishers, updated } = game
 
  
   
@@ -33,8 +33,6 @@ const SingleGame = () => {
     fetchTrailer(id)
   }, [id])
 
-  const platformNames = platforms?.map(pl => pl.platform?.name).join(' - ');
-  const strs = stores?.map(pl => pl?.store?.name).join(' - ')
   const devs = developers?.map(pl => pl?.name).join(' - ');
   const genre = genres?.map(pl => pl?.name).join(' - ');
   const newGenres = [...new Set(genre)]
@@ -86,22 +84,32 @@ const SingleGame = () => {
               </p>
             </div>
             <div className="grid gap-y-4">
-              <div className={`${ratingPercentage <= 50 ?'text-red-500' : 'text-green-500'}` }>
-                <div className="radial-progress" style={{ "--value": ratingPercentage }} role="progressbar">{ratingPercentage?.toFixed(1)}%</div>
+              <div className="flex gap-x-6 mb-6">
+                <h3 className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap">Rating :</h3>
+                <div className={`${ratingPercentage <= 50 ?'text-red-500' : 'text-green-500'}` }>
+                  <div className="radial-progress" style={{ "--value": ratingPercentage }} role="progressbar">{ratingPercentage?.toFixed(1)}%</div>
+                </div>
               </div>
               <p className="flex  items-center gap-x-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider">
                 <FaClock /> Release date : <span className="gray-color">{released}</span>
+              </p>
+
+              <p className="flex  items-center gap-x-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider">
+                <MdBrowserUpdated /> Last Update : <span className="gray-color">{updated}</span>
               </p>
               
             </div>
           </div>
         </div>
 
-        <div className="pt-6 lg:pt-8 flex flex-wrap gap-6 items-center">
-        <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
-                <RiComputerFill /> platforms : <span className="gray-color">{platformNames}</span>
-              </p>
-              <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
+        <div className="h-1 w-full bg-white rounded-lg" />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 py-10 lg:py-16">
+
+
+          <div className=" col-span-1 lg:col-span-2 md:order-first p-4">
+            <div className="grid gap-y-6">
+            <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
                 <IoSettings /> developers : <span className="gray-color">{devs}</span>
               </p>
               <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
@@ -116,10 +124,58 @@ const SingleGame = () => {
               <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
                 <FaPlay /> PlayTime : <span className="gray-color">{playtime}</span>
               </p>
-              <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
-                <FaStore /> Stores : <span className="gray-color">{strs}</span>
+          </div>
+          </div>
+
+
+
+          <div className="col-span-1 flex flex-col items-center justify-center p-4 order-first">
+            <div className="bg-[#342056] text-white rounded-lg h-full w-full p-2 mb-4">
+            <p className=" gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex items-center mb-3 ">
+                <RiComputerFill /> platforms : 
               </p>
+              <div>
+                <div className="flex flex-col gap-y-2 text-gray-400">
+                  {platforms?.map((p) => {
+                    const { id, name } = p.platform
+
+                    return (
+                      <p key={id} className="text-lg md:text-xl lg:text-2xl">
+                          - {name}
+                      </p>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="light-blue-bg-color text-white rounded-lg h-full w-full p-2">
+            <p className=" gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex items-center mb-3 ">
+                <FaStore /> stores : 
+              </p>
+              <div>
+                <div className="flex flex-col gap-y-2 text-gray-400">
+                  {stores?.map((p) => {
+                    const { id, name } = p.store
+                    console.log(p.store);
+
+                    return (
+                      <p key={id} className="text-lg md:text-xl lg:text-2xl">
+                          - {name}
+                      </p>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* <div className="pt-6 lg:pt-8 flex flex-wrap gap-6 items-center">
+        <p className="flex  items-center gap-2 text-xl lg:text-2xl text-white capitalize  poppins-medium tracking-wider flex-wrap ">
+                <RiComputerFill /> platforms : <span className="gray-color">{platformNames}</span>
+              </p>
+              
+        </div> */}
       </div>
     </main>
   )

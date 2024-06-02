@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const CreatorsCard = ({ id, name, image, positions, mainPage }) => {
-        console.log(mainPage);
 
   return (
       <Link to='/creators' className={`flex flex-col items-center justify-center p-4  rounded-xl transition-all ease-in-out duration-150 hover:scale-95 text-white ${mainPage ? 'bg-[#342056]' : 'main-bg-color'}`}>
