@@ -1,11 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 import reducer from '../reducer/search_reducer'
-import axios from "axios";
 
 const SearchContext = createContext()
 
 const initialState = {
     isLoading: false,
+    searchItems: [],
 }
 
 
@@ -14,7 +14,7 @@ export const SearchContextProvider = ({ children }) => {
 
 
     return (
-        <SearchContext.Provider value={{ ...state, }}>
+        <SearchContext.Provider value={{ ...state}}>
             {children}
         </SearchContext.Provider>
     )

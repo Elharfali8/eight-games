@@ -13,8 +13,8 @@ export const navLinks = [
     },
     {
         id: 3,
-        title: 'Store',
-        path: '/store'
+        title: 'Platforms',
+        path: '/platforms'
     },
     {
         id: 4,
