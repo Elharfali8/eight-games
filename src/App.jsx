@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Footer, Navbar, Sidebar } from "./components"
-import { Games, Home, Platforms, SingleGame } from "./pages"
+import { CreatorsPage, Games, Home, Platforms, SingleGame } from "./pages"
 import { useState } from "react"
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
         <Route path="/games" element={<Games />} />
         <Route path="/games/:id" element={<SingleGame />} />
         <Route path="/platforms" element={<Platforms />} />
+        <Route path="/creators" element={<CreatorsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
