@@ -8,7 +8,7 @@ const Games = () => {
     const [page, setPage] = useState(1)
 
 
-    const { fetchGames, total_pages, games, isLoading, fetchStores } = useMainContext()
+    const { fetchGames, total_pages, games, isLoading } = useMainContext()
 
     
 
@@ -46,9 +46,6 @@ const Games = () => {
         fetchGames(page, mainInputValue)
     }, [page, mainInputValue])
 
-    useEffect(() => {
-        fetchStores()
-    }, [])
 
 
   return (
