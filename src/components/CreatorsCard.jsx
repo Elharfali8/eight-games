@@ -1,8 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const CreatorsCard = ({id,name, image, positions}) => {
+const CreatorsCard = ({ id, name, image, positions, mainPage }) => {
+        console.log(mainPage);
+
   return (
-      <div className='flex flex-col items-center justify-center p-4 main-bg-color rounded-xl transition-all ease-in-out duration-150 hover:scale-95'>
+      <Link to='/creators' className={`flex flex-col items-center justify-center p-4  rounded-xl transition-all ease-in-out duration-150 hover:scale-95 text-white ${mainPage ? 'bg-[#342056]' : 'main-bg-color'}`}>
           <div className="avatar mb-4">
             <div className="w-24 rounded-full">
                 <img src={image} alt={name} />
@@ -19,7 +22,7 @@ const CreatorsCard = ({id,name, image, positions}) => {
                   )
               })}
           </div>
-    </div>
+    </Link>
   )
 }
 
