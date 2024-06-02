@@ -8,7 +8,7 @@ const Games = () => {
     const [page, setPage] = useState(1)
 
 
-    const { fetchGames, total_pages, games, isLoading } = useMainContext()
+    const { fetchGames, total_pages, games, isLoading, fetchStores } = useMainContext()
 
     
 
@@ -18,7 +18,14 @@ const Games = () => {
     }
 
     const handleSearch = () => {
+        setPage(1)
         setMainInputValue(inputValue)
+    }
+
+    const clearInput = () => {
+        setPage(1)
+        setMainInputValue('')
+        setInputValue('')
     }
 
     const handlePage = (e) => {
@@ -36,8 +43,13 @@ const Games = () => {
     };
 
     useEffect(() => {
-        fetchGames(page)
-    }, [page])
+        fetchGames(page, mainInputValue)
+    }, [page, mainInputValue])
+
+    useEffect(() => {
+        fetchStores()
+    }, [])
+
 
   return (
       <main className='min-h-[calc(100vh-80px)] main-bg-color'>
@@ -46,7 +58,7 @@ const Games = () => {
                   <h3 className='text-lg lg:text-xl gr-color poppins-medium tracking-wider'>Explore and Search for thousands of games</h3>
               </div>
               <div className='flex items-center justify-center'>
-                  <SearchInput inputValue={inputValue} handleInput={handleInput} handleSearch={handleSearch} />
+                  <SearchInput inputValue={inputValue} handleInput={handleInput} handleSearch={handleSearch} clearInput={clearInput} />
               </div>
               <div className='h-1 w-full bg-white my-8 lg:my-10' />
               <div>

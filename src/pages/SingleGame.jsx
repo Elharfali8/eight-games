@@ -1,11 +1,11 @@
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useSingleGameContext } from "../context/singleGame_context";
 import { useEffect, useState } from "react";
-import { TbArrowBadgeRightFilled } from "react-icons/tb";
 import { FaClock, FaTags, FaTrophy, FaStar, FaPlay, FaStore } from "react-icons/fa";
 import { RiComputerFill } from "react-icons/ri";
 import { IoSettings } from "react-icons/io5";
 import { TbWorldCode } from "react-icons/tb";
+import { PageTitle } from "../components";
 
 
 
@@ -57,21 +57,7 @@ const SingleGame = () => {
   return (
     <main className="min-h-[calc(100vh-64px)] main-bg-color">
       <div className="container mx-auto px-4 lg:px-2 xl:px-1">
-        <div className="py-8 lg:py-10 text-white flex items-center gap-x-3">
-          <Link to='/' className="poppins-regular tracking-wider text-lg lg:text-xl flex-wrap ">
-            Home
-          </Link>
-          <span>
-            <TbArrowBadgeRightFilled size={29} color="#FF7582" />
-          </span>
-          <Link to='/games' className="poppins-regular tracking-wider text-lg lg:text-xl">
-            Games
-          </Link>
-          <span>
-            <TbArrowBadgeRightFilled size={29} color="#FF7582" />
-          </span>
-          <h3 className="poppins-medium tracking-wider text-lg lg:text-xl gr-color">{name}</h3>
-        </div>
+        <PageTitle pageTitle='Games' name={name} />
 
         <div className="py-3 lg:py-5">
           <h1 className="text-3xl lg:text-4xl xl:text-5xl poppins-semibold tracking-widest light-color">{name}</h1>
