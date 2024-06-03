@@ -40,6 +40,12 @@ const main_reducer = (state, action) => {
         return {...state, platforms: data}
     }
 
+    // fetch genres
+    if (action.type === 'FETCH_GENRES') {
+        const { data } = action.payload
+        return {...state, genres: data}
+    }
+
     return {...state}
 }
 
