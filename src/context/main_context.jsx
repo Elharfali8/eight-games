@@ -11,7 +11,8 @@ const initialState = {
     creators: [],
     games: [], 
     platforms: [],
-    total_pages: 0
+    total_pages: 0,
+    genres: []
 }
 
 
@@ -51,7 +52,7 @@ export const MainContextProvider = ({ children }) => {
     }
 
     // fetch games
-    const fetchGames = async (page, search) => {
+    const fetchGames = async (page, search, genre) => {
         dispatch({type: 'IS_LOADING'})
         try {
             const response = await axios('https://api.rawg.io/api/games', {
@@ -59,7 +60,8 @@ export const MainContextProvider = ({ children }) => {
                     key: apiKey,
                     page,
                     page_size: 20,
-                    search: search
+                    search: search,
+                    genres: genre !== 'all' ? genre : undefined,
                 }
             })
             dispatch({type: 'IS_LOADING_SUCCESS'})
@@ -91,9 +93,28 @@ export const MainContextProvider = ({ children }) => {
             console.log(error);
         }
     }
+
+    // fetch Genres
+    const fetchGenres = async () => {
+        dispatch({type: 'IS_LOADING'})
+        try {
+          const response = await axios('https://api.rawg.io/api/genres', {
+            params: {
+              key: apiKey
+            }
+          });
+            const data = response.data.results
+            dispatch({type: 'IS_LOADING_SUCCESS'})
+            dispatch({ type: 'FETCH_GENRES', payload: {data} })
+            console.log(data);
+        } catch (error) {
+            dispatch({type: 'IS_LOADING_SUCCESS'})
+          console.error('Error fetching genres:', error);
+        }
+      };
     
     return (
-        <MainContext.Provider value={{...state, fetchPopularGames, fetchCreators, fetchGames, fetchPlatforms}}>
+        <MainContext.Provider value={{...state, fetchPopularGames, fetchCreators, fetchGames, fetchPlatforms, fetchGenres}}>
             {children}
         </MainContext.Provider>
     )
