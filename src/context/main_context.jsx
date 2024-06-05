@@ -12,7 +12,8 @@ const initialState = {
     games: [], 
     platforms: [],
     total_pages: 0,
-    genres: []
+    genres: [],
+    platform_games: []
 }
 
 
@@ -77,7 +78,7 @@ export const MainContextProvider = ({ children }) => {
 
     // fetch stores
     const fetchPlatforms = async (num) => {
-        dispatch({type: 'IS_LOADING'})
+        dispatch({type: 'IS_LOADgames_by_platformING'})
         try {
             const response = await axios('https://api.rawg.io/api/platforms', {
                 params: {
@@ -111,10 +112,36 @@ export const MainContextProvider = ({ children }) => {
             dispatch({type: 'IS_LOADING_SUCCESS'})
           console.error('Error fetching genres:', error);
         }
-      };
+    };
+
+    const fetchGamesByPlatforms = async (platformId, page, genre, search) => {
+        dispatch({type: 'IS_LOADING'})
+        try {
+            const response = await axios('https://api.rawg.io/api/games', {
+                params: {
+                    key: apiKey,
+                    platforms: platformId,
+                    page,
+                    page_size: 20,
+                    genres: genre !== 'all' ? genre : undefined,
+                    search: search
+                }
+            })
+            const data = response.data.results
+            dispatch({type: 'IS_LOADING_SUCCESS'})
+            const pages = response.data.count
+            dispatch({ type: 'FETCH_GAMES_BY_PLATFORMS', payload: { data } })
+            dispatch({type: 'FETCH_PAGES', payload: {pages}})
+        } catch (error) {
+            dispatch({type: 'IS_LOADING_SUCCESS'})
+            console.error('Error fetching genres:', error);
+        }
+    }
+    
+    
     
     return (
-        <MainContext.Provider value={{...state, fetchPopularGames, fetchCreators, fetchGames, fetchPlatforms, fetchGenres}}>
+        <MainContext.Provider value={{...state, fetchPopularGames, fetchCreators, fetchGames, fetchPlatforms, fetchGenres, fetchGamesByPlatforms}}>
             {children}
         </MainContext.Provider>
     )

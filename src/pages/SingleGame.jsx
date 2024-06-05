@@ -55,7 +55,7 @@ const SingleGame = () => {
   return (
     <main className="min-h-[calc(100vh-64px)] main-bg-color">
       <div className="container mx-auto px-4 lg:px-2 xl:px-1">
-        <PageTitle pageTitle='Games' name={name} />
+        <PageTitle pageTitle='Games' name={name} link='games' />
 
         <div className="py-3 lg:py-5">
           <h1 className="text-3xl lg:text-4xl xl:text-5xl poppins-semibold tracking-widest light-color">{name}</h1>
