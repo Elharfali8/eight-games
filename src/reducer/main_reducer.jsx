@@ -46,6 +46,12 @@ const main_reducer = (state, action) => {
         return {...state, genres: data}
     }
 
+    // fetch games by platforms
+    if (action.type === 'FETCH_GAMES_BY_PLATFORMS') {
+        const { data } = action.payload
+        return {...state, platform_games: data}
+    }
+
     return {...state}
 }
 

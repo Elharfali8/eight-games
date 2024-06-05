@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { GridView, SearchInput, Pagination, Genres } from '../components'
-import { useMainContext } from '../context/main_context'
+import { Pagination, SearchInput, Genres, GridView, PageTitle } from "../components"
+import { useState, useEffect } from "react"
+import { useMainContext } from "../context/main_context"
+import { useParams } from "react-router-dom"
 
-const Games = () => {
+const PlatformGames = () => {
+    const {id} = useParams()
     const [inputValue, setInputValue] = useState('')
     const [mainInputValue, setMainInputValue] = useState('')
     const [page, setPage] = useState(1)
     const [category, setCategory] = useState('all')
     const [genArr, setGenArr] = useState([])
 
-    const { fetchGames, total_pages, games, isLoading, fetchGenres, genres } = useMainContext()
+    const { fetchGamesByPlatforms, total_pages, platform_games: games, isLoading, fetchGenres, genres, platforms, fetchPlatforms } = useMainContext()
 
-    
     
     
     const handleInput = (e) => {
@@ -28,9 +29,9 @@ const Games = () => {
         const value = e.target.value;
         const newValue = value.toLowerCase();
         setCategory(newValue);
-        console.log(`Value: ${newValue}, category: ${category}`);
+        setPage(1)
       };
-
+      
 
     const clearInput = () => {
         setPage(1)
@@ -40,7 +41,7 @@ const Games = () => {
 
     const handlePage = (e) => {
         const value = e.target.value;
-        
+        console.log(value, page);
         if (value === 'next') {
             if (page < total_pages) {
                 setPage(page + 1);
@@ -53,8 +54,10 @@ const Games = () => {
     };
 
     useEffect(() => {
-        fetchGames(page, mainInputValue, category)
-    }, [page, mainInputValue, category])
+        fetchGamesByPlatforms(id, page, category, mainInputValue)
+        fetchPlatforms()
+    }, [id, page, category, mainInputValue])
+
     
     useEffect(() => {
         fetchGenres()
@@ -65,11 +68,13 @@ const Games = () => {
         setGenArr(newGenres)
     }, [genres])
     
-  return (
-      <main className='min-h-[calc(100vh-80px)] main-bg-color'>
+    const platform = platforms?.find((p) => p.id === parseInt(id))
+    
+    return (
+    <main className='min-h-[calc(100vh-80px)] main-bg-color'>
           <div className="container mx-auto px-4 lg:px-2 xl:px-1 py-8 lg:py-10 text-white">
-              <div className='mb-4'>
-                  <h3 className='text-lg lg:text-xl gr-color poppins-medium tracking-wider'>Explore and Search for thousands of games</h3>
+            <div className='mb-4'>
+                    <PageTitle pageTitle='Platforms' name={platform?.name} link='platforms' />
               </div>
               <div className='flex items-start justify-center'>
                   <SearchInput inputValue={inputValue} handleInput={handleInput} handleSearch={handleSearch} clearInput={clearInput} />
@@ -100,4 +105,4 @@ const Games = () => {
   )
 }
 
-export default Games
+export default PlatformGames

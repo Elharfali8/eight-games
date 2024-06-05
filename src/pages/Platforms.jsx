@@ -43,7 +43,7 @@ const Stores = () => {
                       const someGames = games?.slice(0, 2)
                         
                         return (
-                          <Link key={id} className='h-[300px] rounded-xl transition-all ease-in-out duration-150 hover:scale-105 relative' style={{ backgroundImage: `url(${image_background}) `, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} >
+                          <Link to={`/platforms/${id}`} key={id} className='h-[300px] rounded-xl transition-all ease-in-out duration-150 hover:scale-105 relative' style={{ backgroundImage: `url(${image_background}) `, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} >
                             <div className='absolute bottom-0 right-0 left-0 px-2 bg-opacity py-1'>
                               <h1 className='text-white text-2xl lg:text-3xl mb-3 poppins-semibold'>{name}</h1>
                               <h3 className='text-gray-300 text-xl lg:text-2xl poppins-medium mb-2'>Some games :</h3>

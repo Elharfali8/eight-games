@@ -9,7 +9,11 @@ export const navLinks = [
     {
         id: 2,
         title: 'Games',
-        path: '/games'
+        path: '/games',
+        items: {
+            title: 'Popular',
+            path: '/games/popular'
+        }
     },
     {
         id: 3,
